@@ -5,19 +5,23 @@
     <meta name="viewport" 
     content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Login</title>
+    <title>Cadastro</title>
 </head>
 <body>
     <div class="container">
         <h1>Cadastro</h1>
 
-        <input type="text" placeholder="Nome">
+        <input class="campos" type="text" placeholder="Nome">
 
-        <input type="text" placeholder="E-mail">
+        <input class="campos" type="text" placeholder="E-mail">
 
-        <input type="password" placeholder="Senha">
+        <input class="campos" type="password" placeholder="Senha">
 
-        <input type="text" placeholder="Tipo">
+        <select name="tipo">
+            <option class="campos" disabled selected >Tipo de usuário</option>
+            <option value="0">Administrador</option>
+            <option value="1">Usuário comum</option>
+        </select>
         
         <button>Enviar</button>
     </div>

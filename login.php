@@ -11,7 +11,7 @@
     <div class="container">
         <h1>Login</h1>
 
-        <input type="text" placeholder="E-mail">
+        <input type="email" placeholder="E-mail">
         <input type="password" placeholder="Senha">
         <button>Enviar</button>
     </div>
