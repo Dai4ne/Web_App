@@ -12,9 +12,13 @@
         <h1>Cadastro</h1>
 
         <input type="text" placeholder="Nome">
+
         <input type="text" placeholder="E-mail">
+
         <input type="password" placeholder="Senha">
-        <input type="text">
+
+        <input type="text" placeholder="Tipo">
+        
         <button>Enviar</button>
     </div>
 </body>
