@@ -11,9 +11,19 @@
     <div class="container">
         <h1>Login</h1>
 
-        <input type="email" placeholder="E-mail">
-        <input type="password" placeholder="Senha">
-        <button>Enviar</button>
+        <form action="teste_login.php" method="POST">
+
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            
+            <input type="submit" name="submit" value="Logar" class="submit">
+
+            <a href="cadastro.php">Realizar cadastro</a>
+
+        </form>
+
     </div>
+
+
 </body>
 </html>
