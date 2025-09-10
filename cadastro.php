@@ -40,7 +40,9 @@
                 <option value="1">Usuário comum</option>
             </select>
             
-            <input type="submit" name="submit" value="Cadastrar" class="submit">
+            <input type="submit" name="submit" value="Cadastrar" class="submit"> <br>
+
+            <a href="login.php">Voltar à página de login</a>
         </form>
     </div>
 
