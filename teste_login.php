@@ -20,14 +20,13 @@
         else 
         {
             // com acesso
-            // pega os dadss do usuário que acabaram de ser encontrados/preenchidos
+            // pega os dados do usuário que acabaram de ser encontrados/preenchidos
             $usuario = mysqli_fetch_assoc($resultado);
             $quant_acesso_atual = $usuario['quant_acesso'];
 
             //quantidade de acessos
             $nova_quant_acesso = $quant_acesso_atual + 1;
 
-            //atualização
             $sql_update = "UPDATE usuarios SET quant_acesso = '$nova_quant_acesso' WHERE login = '$email'";
 
             $conexao->query($sql_update);
@@ -37,7 +36,7 @@
             header('Location: principal.php');
         }
     }
-    
+
     else 
     {
         header('Location: login.php');
