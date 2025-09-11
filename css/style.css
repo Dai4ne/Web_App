@@ -50,10 +50,17 @@ a {
     font-size: 14px;
     color: black;
     text-decoration: none;
-    margin: 50px;
+    margin: 55px;
 }
 
 #trocar-senha {
     text-decoration: underline;
     color: #005595;
+}
+
+#trocar_senha {
+    background-color: #005595;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
 }

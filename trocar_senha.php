@@ -18,7 +18,9 @@
             <input type="password" name="confirma_senha" placeholder="Confirmar nova senha" required>
 
             <input type="submit" name="submit" value="Enviar" class="submit">
-        </form>
+        </form> <br>
+
+        <a href="login.php" id="trocar_senha">Voltar para a página de login</a>
     </div>
 </body>
 </html>
