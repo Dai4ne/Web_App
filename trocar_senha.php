@@ -1,12 +1,3 @@
-<?php 
-    include_once('conexao.php');
-
-    if (!isset($_SESSION['email'])) {
-    die("Acesso negado. Faça login.");
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,15 +10,14 @@
     <div class="container">
         <h1>Troca de senha</h1>
 
-        <form action="processo_novasenha" method="POST">
+        <form action="processo_novasenha.php" method="POST">
+            <input type="email" name="email" placeholder="Email" required>
 
-            <input type="password" name="nova_senha" placeholder="Nova Senha" required>
+            <input type="password" name="nova_senha" placeholder="Nova senha" required>
 
-            <input type="password" name="confirma_senha" placeholder="Confirmar Nova Senha" required>
+            <input type="password" name="confirma_senha" placeholder="Confirmar nova senha" required>
 
-            <input type="submit" name="submit" value="Logar" class="submit"> <br>
-
-
+            <input type="submit" name="submit" value="Enviar" class="submit">
         </form>
     </div>
 </body>

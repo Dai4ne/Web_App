@@ -10,7 +10,10 @@
         $tipo = $_POST['tipo'];
 
         $result = mysqli_query($conexao, "INSERT INTO usuarios(login, senha, nome, tipo) VALUES('$email', '$senha', '$nome', '$tipo')");
+
+        mysqli_close($conexao);
     }
+
 ?>
 
 
