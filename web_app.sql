@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Banco de dados: `web_app`
 --
 
+CREATE DATABASE IF NOT EXISTS web_app;
+USE web_app;
+
 -- --------------------------------------------------------
 
 --
