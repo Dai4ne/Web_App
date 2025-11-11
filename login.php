@@ -15,7 +15,7 @@
 
             <input type="email" name="email" placeholder="E-mail" required>
             <input type="password" name="senha" placeholder="Senha" required>
-            <a href="trocar_senha.php" id="trocar-senha">Esqueceu a senha?</a>
+            <a href="recuperar_senha.php" id="trocar-senha">Esqueceu a senha?</a>
             
             <input type="submit" name="submit" value="Logar" class="submit"> <br>
 

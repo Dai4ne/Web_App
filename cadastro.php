@@ -9,7 +9,16 @@
         $nome = $_POST['nome'];
         $tipo = $_POST['tipo'];
 
-        $result = mysqli_query($conexao, "INSERT INTO usuarios(login, senha, nome, tipo) VALUES('$email', '$senha', '$nome', '$tipo')");
+        // Insere o novo usuário, definindo 'primeiro_acesso' como 1
+        $result = mysqli_query($conexao, "INSERT INTO usuarios(login, senha, nome, tipo, quant_acesso, status, primeiro_acesso) VALUES('$email', '$senha', '$nome', '$tipo', 0, 'A', 1)");
+
+        if($result) {
+            // Opcional: Redirecionar ou mostrar mensagem de sucesso
+            // header('Location: login.php'); 
+        } else {
+            // Opcional: Mostrar erro
+            // echo "Erro ao cadastrar: " . mysqli_error($conexao);
+        }
 
         mysqli_close($conexao);
     }

@@ -12,5 +12,4 @@
         die("Falha na conexão: " . mysqli_connect_error());
     }
 
-    echo "Conexão realizada com sucesso";
 ?>
