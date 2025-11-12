@@ -64,3 +64,11 @@ a {
     color: white;
     border-radius: 5px;
 }
+
+/* Estilização básica do mapa */
+#map {
+    height: 500px;
+    width: 100%;
+    border: 2px solid #333;
+    border-radius: 10px;
+}
