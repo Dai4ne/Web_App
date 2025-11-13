@@ -57,9 +57,12 @@
             <input type="email" name="email" placeholder="E-mail" required>
             <input type="password" name="senha" placeholder="Senha" required>
             
-            <input type="submit" name="submit" value="Cadastrar" class="submit"> <br>
+            <input type="submit" name="submit" value="Cadastrar" class="submit"> 
 
-            <a href="../login.php">Voltar à página de login</a>
+            <p>
+               <a href="../login.php" class="mudar-de-pagina">Voltar à página de login</a> 
+            </p>
+            
         </form>
     </div>
 </body>

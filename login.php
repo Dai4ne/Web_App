@@ -28,11 +28,19 @@
 
                 <input type="email" name="email" placeholder="E-mail" required>
                 <input type="password" name="senha" placeholder="Senha" required>
-                <a href="recuperar_senha.php" class="mudar-de-pagina" id="trocar-senha">Esqueceu a senha?</a>
-                
-                <input type="submit" name="submit" value="Logar" class="submit"> <br>
 
-                <a href="usuario_comum/cadastro_comum.php" class="mudar-de-pagina">Realizar cadastro</a>
+                <p>
+                    <a href="recuperar_senha.php" class="mudar-de-pagina" id="trocar-senha">Esqueceu a senha?</a>
+                </p>
+                
+                
+                <input type="submit" name="submit" value="Logar" class="submit"> 
+
+                <p>
+                    <a href="usuario_comum/cadastro_comum.php" class="mudar-de-pagina">Realizar cadastro</a>
+                </p>
+
+                
 
             </form>   
         </div>

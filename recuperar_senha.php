@@ -13,16 +13,19 @@
 
         <form action="processo_recuperacao.php" method="POST">
             
-            <input type="email" name="email" placeholder="Seu E-mail de Cadastro" required>
+            <input type="email" name="email" placeholder="Seu e-mail de cadastro" required>
 
             <input type="password" name="nova_senha" placeholder="Nova senha" required>
 
             <input type="password" name="confirma_senha" placeholder="Confirmar nova senha" required>
 
-            <input type="submit" name="submit" value="Alterar Senha" class="submit">
+            <input type="submit" name="submit" value="Alterar senha" class="submit">
         </form> <br>
 
-        <a href="login.php">Voltar para a página de login</a>
+        <p>
+            <a href="login.php">Voltar para a página de login</a>
+        </p>
+        
     </div>
 </body>
 </html>

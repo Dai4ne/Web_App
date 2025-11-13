@@ -35,10 +35,11 @@ input, select {
 }
 
 
-.submit {
+input[type="submit"] {
     background-color: #005595;
+    text-align: center;
     color: white;
-    width: 80px;
+    width: 90px;
     padding: 7px;
     border: none;
     border-radius: 5px;
@@ -52,6 +53,11 @@ a {
     color: black;
     text-decoration: none;
     justify-content: center;
+}
+
+p {
+    margin: auto;
+    text-align: center;
 }
 
 .mudar-de-pagina {

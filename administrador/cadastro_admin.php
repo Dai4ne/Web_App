@@ -72,7 +72,10 @@
             
             <input type="submit" name="submit" value="Cadastrar" class="submit"> <br>
 
-            <a href="principal_admin.php">Voltar à página principal</a>
+            <p>
+                <a href="principal_admin.php" class="mudar-de-pagina">Voltar à página principal</a>
+            </p>
+            
         </form>
     </div>
 </body>
