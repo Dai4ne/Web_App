@@ -33,7 +33,7 @@
 
             // Armazena dados essenciais na sessão
             $_SESSION['logado'] = true;
-            $_SESSION['email'] = $email;
+            $_SESSION['login'] = $email;
             $_SESSION['tipo'] = $user_data['tipo']; 
             
             // Verifica a flag de primeiro acesso

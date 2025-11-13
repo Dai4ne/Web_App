@@ -13,8 +13,8 @@
     $google_maps_api_key = "AIzaSyD1ymgJSOFD9yCS4hoC7hNeU8Km40bbQi0"; // Substitua pela sua chave real!
     
     // Login do usuário logado
-    $login_usuario = $_SESSION['login']; 
-
+    $login_usuario = isset($_SESSION['login']) ? $_SESSION['login'] : '';
+    
     // Query para buscar todos os eventos e verificar o status da reserva do usuário
     $sql_eventos = "
         SELECT 

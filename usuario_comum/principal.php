@@ -20,7 +20,7 @@
     <div class="container">
         <h1>Login feito com sucesso!</h1>
 
-        <p>Bem-vindo, <?php echo htmlspecialchars($_SESSION['email']); ?>.</p>
+        <p>Bem-vindo, <?php echo htmlspecialchars($_SESSION['login']); ?>.</p>
 
         <a href="principal2.php">Clique aqui para ver a futura página principal</a>
 

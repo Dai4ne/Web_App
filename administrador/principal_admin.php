@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <h1>Painel do Administrador</h1>
-        <p>Bem-vindo, Administrador <?php echo htmlspecialchars($_SESSION['email']); ?>.</p>
+        <p>Bem-vindo, Administrador <?php echo htmlspecialchars($_SESSION['login']); ?>.</p>
         
         <p>Você pode gerenciar as reservas e os usuários.</p>
         
