@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Out-2025 às 18:55
+-- Tempo de geração: 13-Nov-2025 às 06:13
 -- Versão do servidor: 10.4.19-MariaDB
 -- versão do PHP: 8.0.7
 
@@ -20,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `web_app`
 --
-
-CREATE DATABASE IF NOT EXISTS web_app;
-USE web_app;
 
 -- --------------------------------------------------------
 
@@ -41,6 +38,13 @@ CREATE TABLE `eventos` (
   `imagem` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `eventos`
+--
+
+INSERT INTO `eventos` (`id_evento`, `nome`, `descricao`, `local`, `data`, `hora`, `capacidade`, `imagem`) VALUES
+(1, 'Aniversário Daiane', 's5edrftugih', 'Rua Inocêncio Claudino Barbosa, Cidade Morumbi', '2026-05-12', '15:22:00', '55', '\\\"D:\\\\BKP PC ANA MADRINHA\\\\Meu Disco\\\\ana\\\\DSC02450.JPG\\\"');
+
 -- --------------------------------------------------------
 
 --
@@ -54,6 +58,13 @@ CREATE TABLE `reservas` (
   `status` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `reservas`
+--
+
+INSERT INTO `reservas` (`id_reserva`, `login`, `id_evento`, `status`) VALUES
+(1, 'erik@gmail.com', 1, 'C');
+
 -- --------------------------------------------------------
 
 --
@@ -66,17 +77,22 @@ CREATE TABLE `usuarios` (
   `nome` varchar(120) NOT NULL,
   `tipo` char(1) NOT NULL,
   `quant_acesso` int(11) NOT NULL,
-  `status` char(1) NOT NULL
+  `status` char(1) NOT NULL,
+  `primeiro_acesso` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`login`, `senha`, `nome`, `tipo`, `quant_acesso`, `status`) VALUES
-('daianeksilva07@gmail.com', '123456', 'Daiane', '1', 4, ''),
-('ferrini@gmail.com', '123456', 'Ferrini', '0', 1, ''),
-('leticia@gmail.com', '123', 'leticia', '0', 1, '');
+INSERT INTO `usuarios` (`login`, `senha`, `nome`, `tipo`, `quant_acesso`, `status`, `primeiro_acesso`) VALUES
+('ana@gmail.com', '123456789', 'Ana', '0', 5, 'A', 0),
+('anderson@gmail.com', 'andersonroberto', 'Anderson', '1', 1, 'A', 0),
+('arthurmigs@gmail.com', 'evpnd', 'Arthur', '0', 18, 'A', 0),
+('bruna@gmail.com', '$2y$10$GNSIpZsWBO8pplSbP6GIdOG5tZDszo85yXXKncIHjfsvKVLJmlT2K', 'Bruna', '1', 0, 'A', 1),
+('daianeksilva07@gmail.com', '123456', 'Daiane', '0', 5, 'A', 0),
+('erik@gmail.com', '123456789', 'Erik', '1', 30, 'A', 0),
+('larissa@gmail.com', '$2y$10$5.3jEgLCHXISFhXopGmreenyb9Dlh53oQomqRXMV/tJMPWjS/3aeu', 'Larissa', '1', 0, 'A', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -110,13 +126,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para despejos de tabelas
