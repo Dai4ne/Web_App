@@ -46,8 +46,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_admin.css">
-    <title>Cadastro de Usuário (Admin)</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Cadastro de usuário</title>
 </head>
 <body>
     <div class="container">
@@ -69,7 +69,7 @@
             
             <input type="submit" name="submit" value="Cadastrar" class="submit"> <br>
 
-            <a href="principal_admin.php">Voltar à página principal do Admin</a>
+            <a href="eventos_admin.php">Voltar à página principal do Admin</a>
         </form>
     </div>
 </body>

@@ -26,6 +26,18 @@
 
         <nav class="nav-icons">
             <div class="icon-box">
+                <a href="eventos_admin.php">EVENTOS</a>
+            </div>
+
+            <div class="icon-box">
+                <a href="principal2_admin.php">NOVO EVENTO</a>
+            </div>
+
+            <div class="icon-box">
+                <a href="cadastro_admin.php">CADASTRAR</a>
+            </div>
+            
+            <div class="icon-box">
                 <a href="../logout.php">SAIR</a>
             </div>
         </nav>
