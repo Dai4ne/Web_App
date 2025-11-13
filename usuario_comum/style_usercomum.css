@@ -1,0 +1,302 @@
+/* RESET E BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa; 
+    color: #333;
+    line-height: 1.6;
+}
+
+/* HEADER */
+.main-header {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container img {
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.icon-box {
+    width: auto; /* Ajusta largura */
+    min-width: 80px;
+    height: 40px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.icon-box:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.content-container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.page-title {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.event-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Layout responsivo de cards */
+    gap: 30px;
+}
+
+/* CARD DE EVENTO */
+.event-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Garante que a imagem se ajuste */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.event-image-container {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.event-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o container */
+    border-radius: 12px 12px 0 0;
+}
+
+.no-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #e9ecef;
+    color: #6c757d;
+    font-size: 1.2em;
+}
+
+.event-details {
+    padding: 20px;
+}
+
+.event-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.event-description {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    max-height: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event-info-list {
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.event-info-list li {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #444;
+}
+
+.event-info-list li strong {
+    font-weight: 600;
+    color: #333;
+}
+
+.availability .disponivel {
+    color: #28a745; /* Verde */
+    font-weight: bold;
+}
+
+.availability .esgotado {
+    color: #dc3545; /* Vermelho */
+    font-weight: bold;
+}
+
+/* BOTÕES DE AÇÃO */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 600;
+}
+
+.reserve-button {
+    background-color: #007bff;
+    color: white;
+    flex-grow: 1; /* Preenche o espaço */
+}
+
+.reserve-button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+.map-button {
+    background: none;
+    border: 1px solid #007bff;
+    color: #007bff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.map-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.reservation-status {
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.reserved {
+    background-color: #28a745; /* Verde */
+    color: white;
+}
+
+.canceled {
+    background-color: #ffc107; /* Amarelo */
+    color: #333;
+}
+
+.sold-out {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+}
+
+.no-events-message {
+    grid-column: 1 / -1; /* Ocupa todas as colunas */
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2em;
+    color: #6c757d;
+    background-color: #e9ecef;
+    border-radius: 8px;
+}
+
+
+/* MODAL DO GOOGLE MAPS */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); /* Fundo semi-transparente */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Centraliza verticalmente e horizontalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; 
+    max-width: 800px; /* Largura máxima */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+#modalTitle {
+    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+#modalMap {
+    height: 400px; 
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}

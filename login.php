@@ -19,7 +19,7 @@
             
             <input type="submit" name="submit" value="Logar" class="submit"> <br>
 
-            <a href="cadastro.php">Realizar cadastro</a>
+            <a href="usuario_comum/cadastro_comum.php">Realizar cadastro</a
 
         </form>
 

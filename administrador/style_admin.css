@@ -1,0 +1,158 @@
+/* RESET E BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Inclui padding e border no tamanho total */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa; /* Fundo cinza claro */
+    color: #333;
+}
+
+/* HEADER */
+.main-header {
+    background: linear-gradient(to right, #007bff, #0056b3); /* Azul vibrante e moderno */
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container img {
+    height: 50px; /* Um pouco menor */
+    width: auto;
+    border-radius: 50%; /* Borda arredondada para a logo */
+}
+
+.nav-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.icon-box {
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 20px; /* Mais arredondado */
+    background-color: #ffffff;
+    color: #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.icon-box:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px); /* Efeito de elevação */
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* CONTEÚDO PRINCIPAL (FORMULÁRIO E MAPA) */
+.content-container {
+    display: flex;
+    padding: 30px;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-section, .map-section {
+    flex: 1; /* Distribui o espaço igualmente */
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 1.8em;
+    color: #007bff;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+/* FORMULÁRIO */
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.half-width {
+    flex: 1;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"], 
+input[type="date"], 
+input[type="time"], 
+input[type="number"], 
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.submit-button {
+    background-color: #28a745; /* Verde para ação de cadastro */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+/* MAPA */
+#map {
+    height: 450px; /* Altura ajustada para o layout */
+    width: 100%;
+    border: 5px solid #e0e0e0; /* Borda clara */
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}

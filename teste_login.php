@@ -10,7 +10,7 @@
         $email_safe = mysqli_real_escape_string($conexao, $email);
         $senha_safe = mysqli_real_escape_string($conexao, $senha);
 
-        // Consulta o usuário pelo email e senha
+        // Consulta o usuário pelo email e senha, OBTENDO TAMBÉM O CAMPO 'tipo'
         $sql = "SELECT * FROM usuarios WHERE login = '$email_safe' AND senha = '$senha_safe'";
         $result = mysqli_query($conexao, $sql);
 
@@ -25,26 +25,31 @@
         else {
             // Login bem-sucedido
             $user_data = mysqli_fetch_assoc($result);
-            
-            // ----------------------------------------------------
-            // LÓGICA ADICIONADA: Incrementa o contador de acessos
-            // ----------------------------------------------------
+           
+            // contador de acessos
             $sql_update_acesso = "UPDATE usuarios SET quant_acesso = quant_acesso + 1 WHERE login = '$email_safe'";
             mysqli_query($conexao, $sql_update_acesso);
-            // ----------------------------------------------------
+
 
             // Armazena dados essenciais na sessão
             $_SESSION['logado'] = true;
             $_SESSION['email'] = $email;
+            $_SESSION['tipo'] = $user_data['tipo']; 
             
             // Verifica a flag de primeiro acesso
             if ($user_data['primeiro_acesso'] == 1) {
-                // PRIMEIRO ACESSO: Redireciona para troca de senha
+                // PRIMEIRO ACESSO: Redireciona para troca de senha (Mantido)
                 header('Location: trocar_senha.php');
                 exit;
             } else {
-                // ACESSOS SEGUINTES: Redireciona para a página principal
-                header('Location: principal.php');
+                // ACESSOS SEGUINTES: Redireciona baseado no tipo de usuário
+                if ($user_data['tipo'] == '0') {
+                    // Administrador
+                    header('Location: administrador/principal_admin.php'); // NOVO: Página para Admin
+                } else {
+                    // Usuário Comum
+                    header('Location: usuario_comum/principal.php'); // Página para Usuário Comum
+                }
                 exit;
             }
         }
