@@ -7,20 +7,8 @@
         exit;
     }
 
-    include('../conexao.php'); // Inclui o arquivo de conexão
-
-    // 1. Query para buscar todos os eventos e o número de reservas ativas
-    $sql_eventos = "
-        SELECT 
-            e.*,
-            (SELECT COUNT(id_reserva) FROM reservas r WHERE r.id_evento = e.id_evento AND r.status = 'A') AS reservas_ativas
-        FROM 
-            eventos e
-        ORDER BY 
-            e.data ASC, e.hora ASC
-    ";
-
-    $resultado_eventos = mysqli_query($conexao, $sql_eventos);
+    // Defina aqui a sua chave de API do Google Maps
+    $google_maps_api_key = "AIzaSyD1ymgJSOFD9yCS4hoC7hNeU8Km40bbQi0"; // Substitua pela sua chave real!
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_admin.css">
-    <title>Painel do Administrador - Eventos Cadastrados</title>
+    <title>Cadastro de eventos</title>
 </head>
 <body>
     <header class="main-header">
@@ -38,80 +26,131 @@
 
         <nav class="nav-icons">
             <div class="icon-box">
-                <a href="eventos_admin.php">EVENTOS</a>
+                <a href="principal_admin.php">EVENTOS</a>
             </div>
 
             <div class="icon-box">
-                <a href="principal2_admin.php">NOVO EVENTO</a>
+                <a href="eventos_admin.php">NOVO EVENTO</a>
             </div>
 
             <div class="icon-box">
                 <a href="cadastro_admin.php">CADASTRAR</a>
             </div>
-            
+           
             <div class="icon-box">
                 <a href="../logout.php">SAIR</a>
             </div>
         </nav>
     </header>
 
-    <main class="content-container-full">
-        <h2 class="page-title">📋 Eventos Cadastrados</h2>
+    <main class="content-container">
+        <div class="form-section">
+            <h2 class="section-title">✨ Novo evento</h2>
+            <form action="processa_cadastro_evento.php" method="POST" class="event-form">
+                <div class="form-group">
+                    <label for="nome">Nome do evento:</label>
+                    <input type="text" id="nome" name="nome" required maxlength="120">
+                </div>
+                
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" required maxlength="500"></textarea>
+                </div>
 
-        <div class="event-list">
-            <?php if (mysqli_num_rows($resultado_eventos) > 0): ?>
-                <?php while ($evento = mysqli_fetch_assoc($resultado_eventos)): 
-                    $capacidade_total = $evento['capacidade'];
-                    $reservas_ativas = $evento['reservas_ativas'];
-                    $capacidade_disponivel = $capacidade_total !== null ? $capacidade_total - $reservas_ativas : '∞';
-                    $esgotado = ($capacidade_total !== null && $capacidade_disponivel <= 0);
-                ?>
-                    <div class="event-card admin-card">
-                        <div class="event-image-container">
-                            <?php if (!empty($evento['imagem'])): ?>
-                                <img src="<?php echo htmlspecialchars($evento['imagem']); ?>" alt="Imagem do Evento">
-                            <?php else: ?>
-                                <div class="no-image">🖼️ Sem Imagem</div>
-                            <?php endif; ?>
-                        </div>
-                        
-                        <div class="event-details">
-                            <h3 class="event-title"><?php echo htmlspecialchars($evento['nome']); ?></h3>
-                            <p class="event-description"><?php echo nl2br(htmlspecialchars($evento['descricao'])); ?></p>
-                            
-                            <ul class="event-info-list">
-                                
-                                <li>📅 **Data:** <?php echo date('d/m/Y', strtotime($evento['data'])); ?></li>
-                                <li>⏰ **Hora:** <?php echo date('H:i', strtotime($evento['hora'])); ?></li>
-                                <li>📍 **Local:** <?php echo htmlspecialchars($evento['local']); ?></li>
-                                
-                                <li class="availability">
-                                    <span class="admin-label">👥 **Reservas:**</span>
-                                    <span class="<?php echo $esgotado ? 'admin-esgotado' : 'admin-disponivel'; ?>">
-                                        **<?php echo $reservas_ativas; ?>** Reservados
-                                    </span>
-                                    <?php if ($capacidade_total !== null): ?>
-                                        <span> / **<?php echo $capacidade_total; ?>** Total</span>
-                                        <span class="<?php echo $esgotado ? 'admin-danger' : 'admin-success'; ?>">
-                                            (<?php echo $capacidade_disponivel; ?> Vagas)
-                                        </span>
-                                    <?php else: ?>
-                                        <span> / **Capacidade Ilimitada**</span>
-                                    <?php endif; ?>
-                                </li>
-                            </ul>
+                <div class="form-group">
+                    <label for="local">Local do evento (endereço completo):</label>
+                    <input type="text" id="local" name="local" required maxlength="200" onchange="geocodeAddress()">
+                </div>
 
-                            
-                        </div>
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="data">Data:</label>
+                        <input type="date" id="data" name="data" required>
                     </div>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p class="no-events-message">Nenhum evento cadastrado no momento. <a href="principal2_admin.php">Crie um novo evento aqui.</a></p>
-            <?php endif; ?>
+
+                    <div class="form-group half-width">
+                        <label for="hora">Hora:</label>
+                        <input type="time" id="hora" name="hora" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="capacidade">Capacidade máxima:</label>
+                        <input type="number" id="capacidade" name="capacidade" min="1" maxlength="6" pattern="[0-9]{1,6}">
+                    </div>
+                    
+                    <div class="form-group half-width">
+                        <label for="imagem">Caminho da imagem (URL/caminho local):</label>
+                        <input type="text" id="imagem" name="imagem" maxlength="255" placeholder="Ex: ../imagens/festa.jpg">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">Cadastrar Evento</button>
+            </form>
         </div>
 
+        <div class="map-section">
+            <h2 class="section-title">🗺️ Pré-visualização do Local</h2>
+            <div id="map"></div>
+        </div>
     </main>
+
+    <script>
+        let map;
+        let geocoder;
+        let marker;
+
+        // Função que inicializa o mapa
+        function initMap() {
+            // Inicializa o mapa em uma localização padrão (São Paulo, SP)
+            const localizacaoPadrao = { lat: -23.55052, lng: -46.633308 };
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: localizacaoPadrao,
+            });
+
+            marker = new google.maps.Marker({
+                map: map,
+                position: localizacaoPadrao,
+                title: "Local Padrão",
+            });
+
+            geocoder = new google.maps.Geocoder();
+            
+            // Tenta geocodificar o local do evento se o campo já tiver algo
+            geocodeAddress();
+        }
+
+        // Função para geocodificar o endereço digitado e atualizar o mapa
+        function geocodeAddress() {
+            const address = document.getElementById("local").value;
+            if (address.trim() === "") {
+                return; // Não faz nada se o campo estiver vazio
+            }
+
+            geocoder.geocode({ 'address': address }, function(results, status) {
+                if (status === 'OK') {
+                    const location = results[0].geometry.location;
+                    map.setCenter(location);
+                    map.setZoom(15); // Zoom mais próximo
+
+                    marker.setPosition(location);
+                    marker.setTitle(address);
+                } else if (status === 'ZERO_RESULTS') {
+                    // console.error('Geocodificação falhou devido a: ' + status);
+                    alert('Não foi possível encontrar o local: "' + address + '". Tente um endereço mais específico.');
+                } else {
+                     // console.error('Geocodificação falhou devido a: ' + status);
+                }
+            });
+        }
+    </script>
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=<?php echo $google_maps_api_key; ?>&callback=initMap">
+    </script>
     
-    <?php mysqli_close($conexao); // Fecha a conexão após buscar os eventos ?>
 </body>
 </html>

@@ -20,12 +20,12 @@
     if (mysqli_stmt_execute($stmt)) {
         // Verifica se alguma linha foi afetada (se a reserva realmente existia e estava ativa)
         if (mysqli_stmt_affected_rows($stmt) > 0) {
-            echo "<script>alert('✅ Reserva cancelada com sucesso!'); window.location.href='principal2.php';</script>";
+            echo "<script>alert('✅ Reserva cancelada com sucesso!'); window.location.href='principal.php';</script>";
         } else {
-            echo "<script>alert('⚠️ Nenhuma reserva ativa para este evento foi encontrada.'); window.location.href='principal2.php';</script>";
+            echo "<script>alert('⚠️ Nenhuma reserva ativa para este evento foi encontrada.'); window.location.href='principal.php';</script>";
         }
     } else {
-        echo "<script>alert('❌ Erro ao cancelar reserva: " . mysqli_stmt_error($stmt) . "'); window.location.href='principal2.php';</script>";
+        echo "<script>alert('❌ Erro ao cancelar reserva: " . mysqli_stmt_error($stmt) . "'); window.location.href='principal.php';</script>";
     }
 
     mysqli_stmt_close($stmt);

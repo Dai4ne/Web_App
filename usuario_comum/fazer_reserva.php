@@ -29,7 +29,7 @@
     mysqli_stmt_close($stmt_check);
 
     if (!$evento_info) {
-        echo "<script>alert('❌ Evento não encontrado.'); window.location.href='principal2.php';</script>";
+        echo "<script>alert('❌ Evento não encontrado.'); window.location.href='principal.php';</script>";
         exit;
     }
 
@@ -39,12 +39,12 @@
     $vagas_disponiveis = $capacidade - $reservas_ativas;
 
     if ($capacidade !== null && $vagas_disponiveis <= 0) {
-        echo "<script>alert('As vagas para este evento esgotaram.'); window.location.href='principal2.php';</script>";
+        echo "<script>alert('As vagas para este evento esgotaram.'); window.location.href='principal.php';</script>";
         exit;
     }
 
     if ($status_reserva_usuario === 'A') {
-        echo "<script>alert('⚠️ Você já tem uma reserva para este evento.'); window.location.href='principal2.php';</script>";
+        echo "<script>alert('⚠️ Você já tem uma reserva para este evento.'); window.location.href='principal.php';</script>";
         exit;
     }
 
@@ -68,9 +68,9 @@
     }
     
     if (mysqli_stmt_execute($stmt)) {
-        echo "<script>alert('✅ " . $action_message . "'); window.location.href='principal2.php';</script>";
+        echo "<script>alert('✅ " . $action_message . "'); window.location.href='principal.php';</script>";
     } else {
-        echo "<script>alert('❌ Erro ao processar reserva: " . mysqli_stmt_error($stmt) . "'); window.location.href='principal2.php';</script>";
+        echo "<script>alert('❌ Erro ao processar reserva: " . mysqli_stmt_error($stmt) . "'); window.location.href='principal.php';</script>";
     }
 
     mysqli_stmt_close($stmt);

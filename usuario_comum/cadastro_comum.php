@@ -46,11 +46,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Cadastro Comum</title>
+    <title>Cadastro</title>
 </head>
 <body>
     <div class="container">
-        <h1>Cadastro de Usuário Comum</h1>
+        <h1>Cadastro</h1>
 
         <form action="cadastro_comum.php" method="POST">
             <input type="text" name="nome" placeholder="Nome" required>

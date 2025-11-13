@@ -54,7 +54,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Cadastro de Usuário (Admin)</h1>
+        <h1>Cadastro de usuário</h1>
         <?php if (!empty($mensagem)): ?>
             <p class="error-message" style="color: green; border-color: #10b981; background-color: #d1fae5;"><?php echo $mensagem; ?></p>
         <?php endif; ?>
@@ -72,7 +72,7 @@
             
             <input type="submit" name="submit" value="Cadastrar" class="submit"> <br>
 
-            <a href="eventos_admin.php">Voltar à página principal do Admin</a>
+            <a href="principal_admin.php">Voltar à página principal</a>
         </form>
     </div>
 </body>

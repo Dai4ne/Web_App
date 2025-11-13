@@ -51,15 +51,15 @@
             mysqli_stmt_bind_param($stmt, $tipos, $nome, $descricao, $local, $data, $hora, $capacidade_bind, $imagem);
 
             if (mysqli_stmt_execute($stmt)) {
-                echo "<script>alert('Evento cadastrado com sucesso!'); window.location.href='principal2_admin.php';</script>";
+                echo "<script>alert('Evento cadastrado com sucesso!'); window.location.href='eventos_admin.php';</script>";
             } else {
-                echo "<script>alert('❌ Erro ao cadastrar evento: " . mysqli_stmt_error($stmt) . "'); window.location.href='principal2_admin.php';</script>";
+                echo "<script>alert('❌ Erro ao cadastrar evento: " . mysqli_stmt_error($stmt) . "'); window.location.href='eventos_admin.php';</script>";
             }
 
             // 5. Fecha a declaração
             mysqli_stmt_close($stmt);
         } else {
-            echo "<script>alert('❌ Erro na preparação da consulta: " . mysqli_error($conexao) . "'); window.location.href='principal2_admin.php';</script>";
+            echo "<script>alert('❌ Erro na preparação da consulta: " . mysqli_error($conexao) . "'); window.location.href='eventos_admin.php';</script>";
         }
 
         // 6. Fecha a conexão
@@ -67,7 +67,7 @@
 
     } else {
         // Se a requisição não for POST, redireciona de volta
-        header('Location: principal2_admin.php');
+        header('Location: eventos_admin.php');
         exit;
     }
 ?>

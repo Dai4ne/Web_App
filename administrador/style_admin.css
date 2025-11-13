@@ -13,7 +13,7 @@ body {
 
 /* HEADER */
 .main-header {
-    background: linear-gradient(to right, #007bff, #0056b3); /* Azul vibrante e moderno */
+    background-image: linear-gradient(to right, #519cff, #73c7ff );
     padding: 15px 40px;
     display: flex;
     justify-content: space-between;
@@ -24,7 +24,8 @@ body {
 .logo-container img {
     height: 50px; /* Um pouco menor */
     width: auto;
-    border-radius: 50%; /* Borda arredondada para a logo */
+    margin-left: -20px;
+    margin-right: 15px;
 }
 
 .nav-icons {
@@ -33,7 +34,7 @@ body {
 }
 
 .icon-box {
-    width: 100px;
+    width: 85px;
     height: 40px;
     border: none;
     border-radius: 20px; /* Mais arredondado */
@@ -42,7 +43,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: bold;
     transition: background-color 0.3s, transform 0.2s;
 }
