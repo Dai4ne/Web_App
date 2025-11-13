@@ -36,7 +36,7 @@
             $_SESSION['login'] = $email;
             $_SESSION['tipo'] = $user_data['tipo']; 
             
-            // Verifica a flag de primeiro acesso
+            // Verifica se é primeiro acesso
             if ($user_data['primeiro_acesso'] == 1) {
                 // PRIMEIRO ACESSO: Redireciona para troca de senha (Mantido)
                 header('Location: trocar_senha.php');

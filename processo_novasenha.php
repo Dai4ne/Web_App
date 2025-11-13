@@ -22,7 +22,7 @@
                 echo "Senha alterada com sucesso. Redirecionando...";
                 
                 // 3. Redireciona para a página principal após a alteração
-                header('Location: principal.php');
+                header('Location: usuario_comum/principal.php');
                 exit;
             } else {
                 echo "Erro ao alterar a senha: " . $conexao->error;

@@ -2,13 +2,13 @@
     session_start();
 
     // Se o email não estiver na sessão, redireciona para o login
-    if(!isset($_SESSION['email'])) {
+    if(!isset($_SESSION['login'])) {
         header('Location: login.php');
         exit;
     }
     
     // Obtém o email do usuário logado para pré-preencher
-    $logged_email = $_SESSION['email'];
+    $logged_email = $_SESSION['login'];
 ?>
 
 <!DOCTYPE html>
