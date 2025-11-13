@@ -72,3 +72,16 @@ a {
     border: 2px solid #333;
     border-radius: 10px;
 }
+
+/* NOVO: Estilo para a mensagem de erro de login */
+div {
+    background-color: #ffffff; /* Vermelho muito claro */
+    color: #b91c1c; /* Vermelho escuro */
+    border: 1px solid #ef4444;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}

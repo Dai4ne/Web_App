@@ -1,4 +1,7 @@
 <?php 
+    // É importante iniciar a sessão se esta página for exibir alertas ou redirecionar
+    // session_start(); 
+
     if(isset($_POST['submit']))
     {
         include_once('../conexao.php');
@@ -8,20 +11,28 @@
         $nome = $_POST['nome'];
         $tipo = '1'; // Tipo fixo: Usuário Comum
 
-        // Proteção contra SQL Injection
+        // 1. GERA O HASH SEGURO DA SENHA
+        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
+        // Proteção contra SQL Injection (embora Prepared Statements seja mais recomendado)
         $email_safe = mysqli_real_escape_string($conexao, $email);
-        $senha_safe = mysqli_real_escape_string($conexao, $senha);
         $nome_safe = mysqli_real_escape_string($conexao, $nome);
+        // Usamos o hash no lugar da senha limpa
+        $senha_hash_safe = mysqli_real_escape_string($conexao, $senha_hash); 
         
-        // Insere o novo usuário, definindo 'tipo' como '1' (Comum) e 'primeiro_acesso' como 1
+        // Insere o novo usuário, usando o hash da senha
         $sql = "INSERT INTO usuarios(login, senha, nome, tipo, quant_acesso, status, primeiro_acesso) 
-                VALUES('$email_safe', '$senha_safe', '$nome_safe', '$tipo', 0, 'A', 1)";
+                VALUES('$email_safe', '$senha_hash_safe', '$nome_safe', '$tipo', 0, 'A', 1)";
         
         $result = mysqli_query($conexao, $sql);
 
         if($result) {
-            echo "<script>alert('Cadastro realizado com sucesso! Faça seu login.'); window.location.href='../login.php';</script>";
+            // Alterado para usar header Location em vez de alert/script para melhor prática de redirecionamento após POST
+            header('Location: ../login.php?cadastro=sucesso');
+            exit;
         } else {
+            // Em caso de erro, exibe mensagem (pode ser problema de e-mail duplicado)
+            // NOTA: É recomendado usar um sistema de mensagens baseado em sessão em vez de alert().
             echo "<script>alert('Erro ao cadastrar: E-mail já existe ou erro no banco.');</script>";
         }
 

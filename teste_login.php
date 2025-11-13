@@ -11,11 +11,15 @@
         $senha_safe = mysqli_real_escape_string($conexao, $senha);
 
         // Consulta o usuário pelo email e senha, OBTENDO TAMBÉM O CAMPO 'tipo'
+        // NOTA DE SEGURANÇA: Para um sistema real, use HASH de senha e Prepared Statements!
         $sql = "SELECT * FROM usuarios WHERE login = '$email_safe' AND senha = '$senha_safe'";
         $result = mysqli_query($conexao, $sql);
 
         if(mysqli_num_rows($result) < 1) {
             // Login ou senha incorretos
+            // Define a variável de sessão para indicar o erro
+            $_SESSION['login_erro'] = true;
+
             unset($_SESSION['email']);
             unset($_SESSION['senha']);
             header('Location: login.php'); 
@@ -25,7 +29,7 @@
         else {
             // Login bem-sucedido
             $user_data = mysqli_fetch_assoc($result);
-           
+            
             // contador de acessos
             $sql_update_acesso = "UPDATE usuarios SET quant_acesso = quant_acesso + 1 WHERE login = '$email_safe'";
             mysqli_query($conexao, $sql_update_acesso);

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +14,15 @@
     <div class="container">
         <h1>Login</h1>
 
+        <?php
+        // Bloco PHP para checar a variável de erro
+        if (isset($_SESSION['login_erro']) && $_SESSION['login_erro'] == true) {
+            echo '<div class="error-message">Usuário ou senha incorretos.</div>';
+            // Limpa a variável de sessão para que a mensagem não apareça novamente após o refresh
+            unset($_SESSION['login_erro']);
+        }
+        ?>
+
         <form action="teste_login.php" method="POST">
 
             <input type="email" name="email" placeholder="E-mail" required>
@@ -19,7 +31,7 @@
             
             <input type="submit" name="submit" value="Logar" class="submit"> <br>
 
-            <a href="usuario_comum/cadastro_comum.php">Realizar cadastro</a
+            <a href="usuario_comum/cadastro_comum.php">Realizar cadastro</a>
 
         </form>
 
