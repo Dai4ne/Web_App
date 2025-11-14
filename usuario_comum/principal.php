@@ -7,9 +7,8 @@
         exit;
     }
 
-    include('../conexao.php'); // Inclui o arquivo de conexão
+    include('../conexao.php'); 
     
-    // Defina aqui a sua chave de API do Google Maps (Necessária para a função do mapa abaixo)
     $google_maps_api_key = "AIzaSyD1ymgJSOFD9yCS4hoC7hNeU8Km40bbQi0"; // Substitua pela sua chave real!
     
     // Login do usuário logado
@@ -40,6 +39,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style_usercomum.css">
     <title>Eventos</title>
 </head>
@@ -56,6 +57,101 @@
             </div>
         </nav>
     </header>
+
+
+
+    <!--API DE CLIMA-->
+    <div id="container">
+
+        <!-- Formulário -->
+        <form id="search">
+            <i class="fa-solid fa-location-dot"></i>
+            <input 
+                type="search" 
+                name="city_name" 
+                id="city_name" 
+                placeholder="Dê uma olhada no clima na sua cidade!"
+            >
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+        
+        <!-- informações do clima -->
+        <div id="weather">
+            <h1 id="title">Rolante, BR</h1>
+
+            <div id="infos">
+                <div id="temp">
+                    <img id="temp_img" src="http://openweathermap.org/img/wn/04d@2x.png" alt="">
+                    
+                    <div>
+                        <p id="temp_value">
+                            32 
+                        </p>
+                        <p id="temp_description">
+                            Ensolarado
+                        </p>
+                    </div>
+                </div>
+
+                <div id="other_infos">
+                    <div class="info">
+                        <i id="temp_max_icon" class="fa-solid fa-temperature-high"></i>
+
+                        <div>
+                            <h2>Temp. max</h2>
+
+                            <p id="temp_max">
+                                 <sup>C°</sup>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <i id="temp_min_icon" class="fa-solid fa-temperature-low"></i>
+
+                        <div>
+                            <h2>Temp. min</h2>
+
+                            <p id="temp_min">
+                                 <sup>C°</sup>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <i id="humidity_icon" class="fa-solid fa-droplet"></i>
+
+                        <div>
+                            <h2>Humidade</h2>
+
+                            <p id="humidity">
+                                
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <i id="wind_icon" class="fa-solid fa-wind"></i>
+
+                        <div>
+                            <h2>Vento</h2>
+
+                            <p id="wind">
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="alert"></div>
+    </div>
+    <script src="script/script.js"></script>
+
+
 
     <main class="content-container">
         <h2 class="page-title">🎉 Eventos disponíveis</h2>
@@ -175,7 +271,7 @@
             document.getElementById('modalTitle').innerText = '📍 Local: ' + title;
             document.getElementById('mapModal').style.display = 'block';
 
-            // Garante que o mapa foi renderizado após o modal ser exibido
+            
             setTimeout(() => {
                 // Tenta geocodificar o endereço
                 if (geocoder) {
@@ -191,7 +287,7 @@
                         }
                     });
                 }
-            }, 100); // Pequeno atraso para garantir o CSS do modal
+            }, 100);
         }
 
         function closeMapModal() {
@@ -203,6 +299,6 @@
         src="https://maps.googleapis.com/maps/api/js?key=<?php echo $google_maps_api_key; ?>&callback=initMapModal">
     </script>
 
-    <?php mysqli_close($conexao); // Fecha a conexão após buscar os eventos ?>
+    <?php mysqli_close($conexao); ?>
 </body>
 </html>

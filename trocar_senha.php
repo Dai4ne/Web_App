@@ -6,7 +6,7 @@
         header('Location: login.php');
         exit;
     }
-    
+
     // Obtém o email do usuário logado para pré-preencher
     $logged_email = $_SESSION['login'];
 ?>
@@ -25,7 +25,8 @@
 
         <form action="processo_novasenha.php" method="POST">
             <!-- Campo de email preenchido e oculto, usando o email da sessão -->
-            <input type="email" name="email" value="<?php echo htmlspecialchars($logged_email); ?>" readonly style="display:none;" required>
+            <!-- O campo foi oculto (hidden) para não poluir o layout, mas o valor é mantido -->
+            <input type="hidden" name="email" value="<?php echo htmlspecialchars($logged_email); ?>" required>
             <p>Alterando senha para: <strong><?php echo htmlspecialchars($logged_email); ?></strong></p>
 
             <input type="password" name="nova_senha" placeholder="Nova senha" required>

@@ -11,7 +11,7 @@
     $id_evento = mysqli_real_escape_string($conexao, $_POST['id_evento']);
     $login_usuario = $_SESSION['login'];
 
-    // 1. Verifica a disponibilidade e se o usuário já tem uma reserva ativa
+    // Verifica a disponibilidade e se o usuário já tem uma reserva ativa
     $sql_check = "SELECT 
                     e.capacidade,
                     (SELECT COUNT(id_reserva) FROM reservas r WHERE r.id_evento = ? AND r.status = 'A') AS reservas_ativas,
@@ -48,7 +48,7 @@
         exit;
     }
 
-    // 2. Realiza a Reserva/Atualiza status
+    // Realiza a Reserva/Atualiza status
     if ($status_reserva_usuario === 'C') {
         // Se já tem uma reserva cancelada, apenas ativa-a novamente
         $sql = "UPDATE reservas SET status = 'A' WHERE id_evento = ? AND login = ?";

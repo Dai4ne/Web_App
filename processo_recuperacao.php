@@ -15,18 +15,18 @@
         $email_safe = mysqli_real_escape_string($conexao, $email);
         $nova_senha_safe = mysqli_real_escape_string($conexao, $nova_senha);
 
-        // 1. Verifica se as senhas coincidem
+        // Verifica se as senhas coincidem
         if ($nova_senha !== $confirma_senha) {
             $mensagem = "Erro: As novas senhas não coincidem.";
         } else {
-            // 2. Verifica se o e-mail existe no banco de dados
+            // Verifica se o e-mail existe no banco de dados
             $sql_check_email = "SELECT login FROM usuarios WHERE login = '$email_safe'";
             $result_check = mysqli_query($conexao, $sql_check_email);
 
             if (mysqli_num_rows($result_check) == 0) {
                 $mensagem = "Erro: O e-mail informado não está cadastrado.";
             } else {
-                // 3. Atualiza a senha no banco de dados
+                // Atualiza a senha no banco de dados
                 // NOTA: Para este fluxo, não alteramos a flag 'primeiro_acesso',
                 // pois o usuário pode ter esquecido a senha antes ou depois do primeiro login.
                 $sql_update_senha = "UPDATE usuarios SET senha = '$nova_senha_safe' WHERE login = '$email_safe'";

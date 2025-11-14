@@ -9,7 +9,7 @@
 
     include('../conexao.php'); // Inclui o arquivo de conexão
 
-    // 1. Query para buscar todos os eventos e o número de reservas ativas
+    // Query para buscar todos os eventos e o número de reservas ativas
     $sql_eventos = "
         SELECT
             e.*,

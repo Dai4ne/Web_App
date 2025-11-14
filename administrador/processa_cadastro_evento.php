@@ -13,7 +13,7 @@
     // Verifica se os dados do formulário foram enviados
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
-        // 1. Recebe e sanitiza os dados
+        //Recebe os dados
         $nome = mysqli_real_escape_string($conexao, $_POST['nome']);
         
         $descricao = mysqli_real_escape_string($conexao, $_POST['descricao']);
@@ -31,11 +31,10 @@
 
 
 
-        // 2. Prepara a query SQL
+        // Prepara a qurry SQL
         $sql = "INSERT INTO eventos (nome, descricao, local, data, hora, capacidade, imagem) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
-        
-        // 3. Prepara a declaração (Prepared Statement para segurança)
+
         $stmt = mysqli_prepare($conexao, $sql);
 
         if ($stmt) {
@@ -43,11 +42,9 @@
             $tipos = "sssssis"; 
             
             // Tratamento de NULL para 'capacidade' para bind_param, pois ele exige variáveis
-            // Se $capacidade for null, passamos a variável para bind_param, mas o tipo é 'i'
-            // O MySQL pode aceitar um NULL em um INT se for NULLABLE
             $capacidade_bind = $capacidade;
             
-            // 4. Associa os parâmetros e executa
+            //Associa os parâmetros e executa
             mysqli_stmt_bind_param($stmt, $tipos, $nome, $descricao, $local, $data, $hora, $capacidade_bind, $imagem);
 
             if (mysqli_stmt_execute($stmt)) {
@@ -56,17 +53,17 @@
                 echo "<script>alert('❌ Erro ao cadastrar evento: " . mysqli_stmt_error($stmt) . "'); window.location.href='eventos_admin.php';</script>";
             }
 
-            // 5. Fecha a declaração
+            //Fecha
             mysqli_stmt_close($stmt);
         } else {
             echo "<script>alert('❌ Erro na preparação da consulta: " . mysqli_error($conexao) . "'); window.location.href='eventos_admin.php';</script>";
         }
 
-        // 6. Fecha a conexão
+        //Fecha a conexão
         mysqli_close($conexao);
 
     } else {
-        // Se a requisição não for POST, redireciona de volta
+        // Se não for POST, redireciona de volta
         header('Location: eventos_admin.php');
         exit;
     }

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    
+
     if(isset($_POST['submit'])) {
         include_once('conexao.php');
 
@@ -10,32 +10,37 @@
 
         // Se as senhas coincidem
         if ($nova_senha === $confirma_senha) {
-            // 1. Atualiza a senha
-            $sql_update_senha = "UPDATE usuarios SET senha = '$nova_senha' WHERE login = '$email'";
-            
-            if ($conexao->query($sql_update_senha) === TRUE) {
-                
-                // 2. IMPORTANTE: Limpa a flag de primeiro acesso
-                $sql_clear_flag = "UPDATE usuarios SET primeiro_acesso = 0 WHERE login = '$email'";
-                $conexao->query($sql_clear_flag); // Executa, mesmo que não seja verificado aqui
 
-                echo "Senha alterada com sucesso. Redirecionando...";
-                
-                // 3. Redireciona para a página principal após a alteração
+            $hash_nova_senha = password_hash($nova_senha, PASSWORD_DEFAULT);
+
+            // Atualiza a senha no banco de dados com o hash
+            $stmt = $conexao->prepare("UPDATE usuarios SET senha = ?, primeiro_acesso = 0 WHERE login = ?");
+            // Tipos de variáveis: 's' para string
+            $stmt->bind_param("ss", $hash_nova_senha, $email);
+
+            if ($stmt->execute()) {
+
+
+                // Após a troca de senha bem-sucedida, o usuário já está logado.
                 header('Location: usuario_comum/principal.php');
                 exit;
             } else {
-                echo "Erro ao alterar a senha: " . $conexao->error;
+                // Erro ao executar o statement
+                echo "Erro ao alterar a senha: " . $stmt->error;
             }
-        } else {
-            echo "As senhas não coincidem. Tente novamente.";
-            // O ideal seria redirecionar de volta para trocar_senha.php
-        }
-    }
 
-    // A chamada a mysqli_close precisa estar fora do if(isset) ou dentro de um bloco 
-    // que garanta que $conexao foi definida e aberta. 
-    if(isset($conexao)) {
+            $stmt->close();
+
+        } else {
+            // Senhas não coincidem - o ideal é notificar o erro e redirecionar
+            echo "As senhas não coincidem. Tente novamente.";
+        }
+
         mysqli_close($conexao);
+    }
+    // Se não for submetido, redireciona para login (prevenção de acesso direto)
+    else {
+        header('Location: login.php');
+        exit;
     }
 ?>

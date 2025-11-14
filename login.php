@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" 
+    <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Login</title>
@@ -19,7 +19,7 @@
             // Bloco PHP para checar a variável de erro
             if (isset($_SESSION['login_erro']) && $_SESSION['login_erro'] == true) {
                 echo '<div class="error-message">Usuário ou senha incorretos.</div>';
-                // Limpa a variável de sessão para que a mensagem não apareça novamente após o refresh
+                // Limpa a variável de sessão
                 unset($_SESSION['login_erro']);
             }
             ?>
@@ -32,19 +32,18 @@
                 <p>
                     <a href="recuperar_senha.php" class="mudar-de-pagina" id="trocar-senha">Esqueceu a senha?</a>
                 </p>
-                
-                
-                <input type="submit" name="submit" value="Logar" class="submit"> 
+
+
+                <input type="submit" name="submit" value="Entrar" class="submit">
 
                 <p>
                     <a href="usuario_comum/cadastro_comum.php" class="mudar-de-pagina">Realizar cadastro</a>
                 </p>
 
-                
 
-            </form>   
+            </form>
         </div>
-        
+
     </div>
 
 

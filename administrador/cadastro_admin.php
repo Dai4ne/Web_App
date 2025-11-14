@@ -4,7 +4,7 @@
 
     // VERIFICAÇÃO DE ADMIN: Redireciona se não estiver logado ou não for Administrador (tipo != '0')
     if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true || !isset($_SESSION['tipo']) || $_SESSION['tipo'] !== '0') {
-        header('Location: ../login.php'); // Redireciona para o login se não for admin (assumindo a estrutura de pastas)
+        header('Location: ../login.php'); // Redireciona para o login se não for admin 
         exit;
     }
 
@@ -17,24 +17,24 @@
         $nome = $_POST['nome'];
         $tipo = $_POST['tipo'];
 
-        // 1. GERA O HASH SEGURO DA SENHA
+        // GERA O HASH SEGURO DA SENHA
         $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
         // Proteção contra SQL Injection
         $email_safe = mysqli_real_escape_string($conexao, $email);
         $nome_safe = mysqli_real_escape_string($conexao, $nome);
         $tipo_safe = mysqli_real_escape_string($conexao, $tipo);
-        // Usamos o hash no lugar da senha limpa
+        
         $senha_hash_safe = mysqli_real_escape_string($conexao, $senha_hash); 
         
-        // Insere o novo usuário (tipo pode ser 0 ou 1, escolhido no select)
+        // Insere o novo usuário
         $sql = "INSERT INTO usuarios(login, senha, nome, tipo, quant_acesso, status, primeiro_acesso) 
                 VALUES('$email_safe', '$senha_hash_safe', '$nome_safe', '$tipo_safe', 0, 'A', 1)";
         
         $result = mysqli_query($conexao, $sql);
 
         if($result) {
-            $mensagem = "Usuário **" . htmlspecialchars($nome) . "** cadastrado como " . ($tipo == '0' ? "Administrador" : "Usuário Comum") . " com sucesso!";
+            $mensagem = "Usuário " . htmlspecialchars($nome) . " cadastrado como " . ($tipo == '0' ? "administrador" : "usuário comum") . " com sucesso!";
         } else {
             $mensagem = "Erro ao cadastrar: E-mail já existe ou erro no banco. " . mysqli_error($conexao);
         }

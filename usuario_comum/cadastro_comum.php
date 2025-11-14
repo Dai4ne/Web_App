@@ -1,6 +1,5 @@
 <?php 
-    // É importante iniciar a sessão se esta página for exibir alertas ou redirecionar
-    // session_start(); 
+    //session_start(); 
 
     if(isset($_POST['submit']))
     {
@@ -14,10 +13,10 @@
         // 1. GERA O HASH SEGURO DA SENHA
         $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-        // Proteção contra SQL Injection (embora Prepared Statements seja mais recomendado)
+        // Proteção contra SQL Injection
         $email_safe = mysqli_real_escape_string($conexao, $email);
         $nome_safe = mysqli_real_escape_string($conexao, $nome);
-        // Usamos o hash no lugar da senha limpa
+
         $senha_hash_safe = mysqli_real_escape_string($conexao, $senha_hash); 
         
         // Insere o novo usuário, usando o hash da senha
@@ -27,12 +26,10 @@
         $result = mysqli_query($conexao, $sql);
 
         if($result) {
-            // Alterado para usar header Location em vez de alert/script para melhor prática de redirecionamento após POST
             header('Location: ../login.php?cadastro=sucesso');
             exit;
         } else {
             // Em caso de erro, exibe mensagem (pode ser problema de e-mail duplicado)
-            // NOTA: É recomendado usar um sistema de mensagens baseado em sessão em vez de alert().
             echo "<script>alert('Erro ao cadastrar: E-mail já existe ou erro no banco.');</script>";
         }
 

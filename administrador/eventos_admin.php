@@ -101,7 +101,6 @@
         let geocoder;
         let marker;
 
-        // Função que inicializa o mapa
         function initMap() {
             // Inicializa o mapa em uma localização padrão (São Paulo, SP)
             const localizacaoPadrao = { lat: -23.55052, lng: -46.633308 };
@@ -139,10 +138,10 @@
                     marker.setPosition(location);
                     marker.setTitle(address);
                 } else if (status === 'ZERO_RESULTS') {
-                    // console.error('Geocodificação falhou devido a: ' + status);
+                    // console.error
                     alert('Não foi possível encontrar o local: "' + address + '". Tente um endereço mais específico.');
                 } else {
-                     // console.error('Geocodificação falhou devido a: ' + status);
+                     // console.error
                 }
             });
         }
